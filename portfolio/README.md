@@ -48,10 +48,6 @@ npm start
 ```
 L'application sera accessible à l'adresse [http://localhost:3000](http://localhost:3000).
 
-## Contribuer
-
-Les contributions sont les bienvenues ! Veuillez soumettre une demande de tirage pour toute amélioration ou correction de bogue.
-
 ## License
 
 Ce projet est sous licence MIT.

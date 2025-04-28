@@ -1,34 +1,149 @@
+/* Styles généraux */
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    overflow: auto; /* Permet le défilement global */
+    height: 100vh; /* Assure que le body occupe toute la hauteur de la fenêtre */
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
+.App {
+    text-align: center;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+/* Ombre par défaut (pas de défilement) */
+.hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    color: #fff;
+    transition: box-shadow 0.3s ease-in-out; /* Transition fluide pour l'ombre */
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* Ombre lorsque le contenu principal défile */
+.hero.scrolled {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Ajoute une ombre */
+    /* noirci */
+}
+.Nom {
+    font-size: 3rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Contenu principal */
+.main-content {
+    position: relative; /* Assure que le contenu principal est bien positionné */
+    margin-top: 100vh; /* Décale le contenu principal sous la section fixe */
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: box-shadow 0.3s ease-in-out; /* Transition fluide pour l'ombre */
+    z-index: 1; /* Assure que le contenu principal est au-dessus de l'ombre */
+    overflow-y: auto; /* Permet le défilement vertical uniquement pour le contenu principal */
+    height: 100vh; /* Assure que le contenu principal occupe toute la hauteur de la fenêtre */
+    scrollbar-width: thin; /* Réduit la largeur de la barre */
+    scrollbar-color: #888 #f0f0f0; /* Couleur de la barre et de l'arrière-plan */
+}
+
+.main-content::-webkit-scrollbar {
+    width: 8px; /* Largeur de la barre de défilement */
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Couleur de l'arrière-plan de la barre */
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background-color: #888; /* Couleur de la barre de défilement */
+    border-radius: 10px; /* Arrondit les coins de la barre */
+    border: 2px solid #f0f0f0; /* Ajoute une bordure autour de la barre */
+}
+
+/* Ombre au-dessus du contenu principal lorsque hero est scrollé */
+.main-content.with-shadow {
+    box-shadow: 0 -40px 40px rgba(0, 0, 0, 0.5); /* Ombre au-dessus */
+}
+
+section {
+    margin: 20px auto;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
 
-.button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+section h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
 }
 
-.button:hover {
-    background-color: #0056b3;
+section p,
+section ul {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Bouton pour scroller */
+.scroll-instruction {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent; /* Fond transparent pour plus de discrétion */
+    color: #ccc; /* Couleur grise pour le texte */
+    padding: 10px 20px;
+    border: 1px solid #ccc; /* Bordure fine et discrète */
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: normal;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.scroll-instruction:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Fond légèrement visible au survol */
+    color: #fff; /* Couleur blanche au survol */
+    transform: translateX(-50%) translateY(-3px); /* Légère élévation au survol */
+}
+
+/* Animation pour l'icône de flèche */
+.scroll-instruction .arrow {
+    display: inline-block;
+    animation: bounce 1.5s infinite;
+    color: inherit; /* Adapte la couleur de la flèche au texte */
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-4px);
+    }
+    60% {
+        transform: translateY(-2px);
+    }
 }

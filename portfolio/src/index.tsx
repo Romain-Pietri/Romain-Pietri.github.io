@@ -9,6 +9,6 @@ if (rootElement) {
         <React.StrictMode>
             <App />
         </React.StrictMode>,
-        rootElement
+        document.getElementById('root')
     );
 }

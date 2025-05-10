@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import AnimatedText from './components/AnimatedText';
-
+import Hero from './components/Hero';
 const App: React.FC = () => {
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            const mainContent = document.querySelector('.main-content');
             if (window.scrollY > 10) {
-                mainContent?.classList.add('with-shadow');
+                setScrolled(true);
             } else {
-                mainContent?.classList.remove('with-shadow');
+                setScrolled(false);
             }
         };
-    
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -29,17 +27,9 @@ const App: React.FC = () => {
     return (
         <div className="App">
             {/* Section fixe pour l'animation */}
-            <div className={`hero ${scrolled ? 'scrolled' : ''}`}>
-                <h1 className="Nom">
-                    <AnimatedText text="Romain Pietri" police="5rem" boolDeleting={false} />
-                    <AnimatedText text="Étudiant Ingénieur Cybersécurité" police="2rem" boolDeleting={true} />
-                </h1>
-                <button className="scroll-instruction" onClick={scrollToContent}>
-                    
-                    <span className="arrow">↓</span>
-                </button>
-            </div>
-
+            
+            <Hero scrolled={scrolled} scrollToContent={scrollToContent} />
+           
             {/* Contenu principal */}
             <main className="main-content">
                 <section>
